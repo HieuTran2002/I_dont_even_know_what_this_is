@@ -153,6 +153,7 @@ int Mam_Xoay_Bat_Dau = 400;
 int Truc_Y_Max = 930;
 int Truc_Y_Target = 930;
 int Truc_Y_Min = 690;
+int Truc_Y_Tim_Bong_Thap = 800;
 
 /* Truc X */
 int Truc_X_Max = 550;													//650;  

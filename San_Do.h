@@ -120,7 +120,7 @@ void ChayLenNeThanh_Do(int tocdo)
 }
 //----------------------------------------------------------------------
 
-void ThaBong_Do()
+void ThaBong_Do(int ChoChonSilo)
 {
 	int KhoangCach = 999;
 	int SoFrameNhanSilo = 0;
@@ -226,35 +226,40 @@ void ThaBong_Do()
 	RobotMode = 8;
 	robotStop(0);
 	// kiem tra gia tri silo tu raspberry pi
-	while(SoFrameNhanSilo < 300)
-	{
-		if (SiloDaChon == SILO_THA_BONG)
-			SoFrameNhanSilo += 1;
-		else
+	//permanentStop();
+	if(ChoChonSilo){
+		while(SoFrameNhanSilo < 300)
 		{
-			SoFrameNhanSilo = 0;
-			SiloDaChon = SILO_THA_BONG;
-		}
-		vTaskDelay(10);
-	}
-	robotRunAngle(0, 15, 0, 0.9);
-	while (lazeSauValue > lazeApSatBoBong)
-	{
-		while (SILO_THA_BONG > 4 && lazeSauValue > lazeApSatBoBong)
-		{
+			if (SiloDaChon == SILO_THA_BONG)
+				SoFrameNhanSilo += 1;
+			else
+			{
+				SoFrameNhanSilo = 0;
+				SiloDaChon = SILO_THA_BONG;
+			}
 			vTaskDelay(10);
 		}
-		vTaskDelay(1);
 
+		robotRunAngle(0, 15, 0, 0.9);
+		while (lazeSauValue > lazeApSatBoBong)
+		{
+			while (SILO_THA_BONG > 4 && lazeSauValue > lazeApSatBoBong)
+			{
+				vTaskDelay(10);
+			}
+			vTaskDelay(1);
+
+		}
+
+		if (SILO_THA_BONG >= 0 && SILO_THA_BONG < 5)
+			viTriThaBong = SILO_THA_BONG;		
 	}
 
-	if (SILO_THA_BONG >= 0 && SILO_THA_BONG < 5)
-		viTriThaBong = SILO_THA_BONG;
 
 	Servo_Cam = 700;
 	RobotMode = 7;
 
-	viTriThaBong = Chay_Bo_Bong(viTriThaBong);
+	viTriThaBong = Chay_Bo_Bong(viTriThaBong, ChoChonSilo);
 	Tha_Bong_Vao_Silo(viTriThaBong);
 
 	robotStop(0);
@@ -267,10 +272,10 @@ void Ve_gap_bong_do(void)
 
 	// lui lai
 	Truc_X_Target = Truc_X_Max;
-	robotRunAngle(1800, 40, 0, 0.3);
+	robotRunAngle(1800, 50, 0, 0.3);
 	for (i = 0; i < 30; i++)
 	{
-		while (lazeSauValue < lazeApSatBoBong - 50)
+		while (lazeSauValue < 50)
 			vTaskDelay(1);
 		vTaskDelay(5);
 	}
@@ -278,7 +283,7 @@ void Ve_gap_bong_do(void)
 	XI_LANH_NANG_BONG_OFF;
 	Mam_Xoay_Target = Mam_Xoay_Gap_Bong;
 
-	while (absI(lazePhaiValue - viTriLazeVeLayBong) > 5)
+	while (absI(lazePhaiValue - viTriLazeVeLayBong) > 3)
 	{
 		// if(lazeSauValue > 100){
 		// 	XI_LANH_NANG_BONG_OFF;
@@ -286,19 +291,16 @@ void Ve_gap_bong_do(void)
 		// }
 		if (viTriLazeVeLayBong > lazePhaiValue)
 		{
-			robotRunAngle(1600 - absI((viTriLazeVeLayBong - lazePhaiValue) * 2.5), 50, 0, 0.3);
+			robotRunAngle(1500 - absI((viTriLazeVeLayBong - lazePhaiValue) * 6), 50, 0, 0.3);
 		}
 		else if (viTriLazeVeLayBong < lazePhaiValue)
 		{
-			robotRunAngle(-1600 + absI((viTriLazeVeLayBong - lazePhaiValue) * 2.5), 50, 0, 0.3);
+			robotRunAngle(-1500 + absI((viTriLazeVeLayBong - lazePhaiValue) * 6), 50, 0, 0.3);
 		}
-		if (lazeSauValue > 400)
-		{
-			break;
-		}
+
 	}
 
-	robotRunAngle(1800, 30, 0, 0.3);
+	robotRunAngle(1800, 50, 0, 0.3);
 
 	for (i = 0; i < 30; i++)
 	{
@@ -309,20 +311,10 @@ void Ve_gap_bong_do(void)
 
 	RESET_ENCODER();
 
+	robotRunAngle(1800, 30, 0, 0.3);
 	while (ENCODER_TONG() < 1500)
 		vTaskDelay(1);
 
-	// RESET_ENCODER();
-	// while (ENCODER_TONG() < 5000 && !(CB_QUANG_TRAI || CB_QUANG_PHAI))
-	// {
-	// 	if(ENCODER_TONG() > 1000)
-	// 	{
-	// 		robotRunAngle(1800, 25, 0, 0.3);
-	// 	}
-	// 	else{
-	// 		robotRunAngle(1800, 40, 0, 0.3);
-	// 	}
-	// }
 	ChuanBiCoCauLayBong();
 	robotStop(20);
 	vTaskDelay(2000);

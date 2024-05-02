@@ -136,19 +136,19 @@ static void taskMain(void *pvParameters)
 	RobotMode = 9;
 
 	/* preset */
+	TocDoToiDaCoKhi = 250;
 	Truc_Y_Target = Truc_Y_Max;
 	Truc_X_Target = Truc_X_Min;
 	Mam_Xoay_Target = Mam_Xoay_Gap_Bong;
 	XI_LANH_KEP_THA_BONG_ON;
 
-	TocDoToiDaCoKhi = 250;
 	Servo_Cam = 1700;  // Servo_Cam = 1100;
 	Servo_Bong = 1900; // 800: 0 do					1900:90 do
 	// chuan bi co cau khi xuat phat
 	// InitialPosition();
 	ChuanBiCoCauLayBong();
 
-	vTaskDelay(30000);
+	vTaskDelay(3000);
 
 	// 1: san xanh; 2: san do
 	if (MauSan == 1)
@@ -166,89 +166,31 @@ static void taskMain(void *pvParameters)
 		ViTriLazeThaBong[0] = 12;
 		ViTriLazeThaBong[1] = 49;
 		ViTriLazeThaBong[2] = 87;
-		ViTriLazeThaBong[3] = 126;
+		ViTriLazeThaBong[3] = 121;
 		ViTriLazeThaBong[4] = 163;
 	}
 
 	while (1)
 	{
-		/*
 		if (NUT_1 == 0)
 		{
-			if (MauSan == 1)
-			{ // 1: san xanh; 2: san do
-				//XUAT_PHAT_SAN_XANH_2();
-				// while (ENCODER_TONG() < 800 && (TAM_X == 0 || TAM_Y < 15))
-				// 	vTaskDelay(1);
-				while (1)
-				{
-					TimBongTuDo(MauSan);
-					permanentStop();
-
-					ThaBong_Xanh();
-					Ve_gap_bong_xanh();
-				}
-				robotStop(0);
-				while (1)
-					vTaskDelay(1000);
-			}
-			else
-			{
-				XUAT_PHAT_SAN_DO_2();
-				//				robotRunAngle(1800, 7, 0, 0.1);
-				//				while (ENCODER_TONG() < 800 && (TAM_X == 0 || TAM_Y < 15))
-				//					vTaskDelay(1);
-				while (1)
-				{
-					TimBongTuDo(MauSan);
-					ThaBong_Do();
-					Ve_gap_bong_do();
-				}
-				robotStop(0);
-				while (1)
-					vTaskDelay(1000);
-			}
+			xuat_phat(MauSan);
+			chay_vung_3(MauSan);
 		}
 
 		if (NUT_2 == 0)
 		{
-			if (MauSan == 1)
-			{ // 1: san xanh; 2: san do
-				// Retry san xanh
-				retry_sanxanh();
-				while (1)
-				{
-					TimBongTuDo(MauSan);
-					ThaBong_Xanh();
-					Ve_gap_bong_xanh();
-				}
-				robotStop(0);
-				while (1)
-					vTaskDelay(1000);
-			}
-			else
-			{
-				// Retry san do
-				retry_sando();
-				while (1)
-				{
-					TimBongTuDo(MauSan);
-					ThaBong_Do();
-					Ve_gap_bong_do();
-				}
-				robotStop(0);
-				while (1)
-					vTaskDelay(1000);
-			}
+			retry(MauSan);
+			chay_vung_3(MauSan);
 		}
-		*/
 		if (NUT_3 == 0)
 		{
 			while (1)
 			{
 				TimBongTuDo(MauSan);
-				// ThaBong(MauSan);
-				// Ve_gap_bong(MauSan);
+				ThaBong(MauSan, 0);	
+				Ve_gap_bong(MauSan);
+				//permanentStop();
 				vTaskDelay(3000);
 			}
 		}

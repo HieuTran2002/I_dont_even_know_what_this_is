@@ -133,7 +133,7 @@ void ChayLenNeThanh_Xanh(int tocdo)
 		robotRunAngle(0, tocdo, 0, 1.5);
 }
 //---------------------------------------------------------------------------------------------
-void ThaBong_Xanh()
+void ThaBong_Xanh(int ChoChonSilo)
 {
 	int KhoangCach = 999;
 	int SoFrameNhanSilo = 0;
@@ -151,7 +151,7 @@ void ThaBong_Xanh()
 
 	for (i = 0; i < 30; i++)
 	{
-		while(!CB_QUANG_TRAI && !CB_QUANG_PHAI)
+		while (!CB_QUANG_TRAI && !CB_QUANG_PHAI)
 		{
 			ChayLenNeThanh_Xanh(60);
 			vTaskDelay(1);
@@ -219,7 +219,7 @@ void ThaBong_Xanh()
 
 	for (i = 0; i < 30; i++)
 	{
-		while (lazeSauValue > 270)
+		while (lazeSauValue > 250)
 		{
 			if (lazeSauValue > 400)
 				robotRunAngle(0, 30, 0, 0.9);
@@ -233,34 +233,37 @@ void ThaBong_Xanh()
 	RobotMode = 8;
 	robotStop(0);
 	// kiem tra gia tri silo tu raspberry pi
-	while(SoFrameNhanSilo < 300)
+	if (ChoChonSilo)
 	{
-		if (SiloDaChon == SILO_THA_BONG)
-			SoFrameNhanSilo += 1;
-		else
+
+		while (SoFrameNhanSilo < 300)
 		{
-			SoFrameNhanSilo = 0;
-			SiloDaChon = SILO_THA_BONG;
-		}
-		vTaskDelay(10);
-	}
-	robotRunAngle(0, 15, 0, 0.9);
-	while (lazeSauValue > lazeApSatBoBong)
-	{
-		while (SILO_THA_BONG > 4 && lazeSauValue > lazeApSatBoBong)
-		{
+			if (SiloDaChon == SILO_THA_BONG)
+				SoFrameNhanSilo += 1;
+			else
+			{
+				SoFrameNhanSilo = 0;
+				SiloDaChon = SILO_THA_BONG;
+			}
 			vTaskDelay(10);
 		}
-		vTaskDelay(1);
+		robotRunAngle(0, 15, 0, 0.9);
+		while (lazeSauValue > lazeApSatBoBong)
+		{
+			while (SILO_THA_BONG > 4 && lazeSauValue > lazeApSatBoBong)
+			{
+				vTaskDelay(10);
+			}
+			vTaskDelay(1);
+		}
+
+		if (SILO_THA_BONG >= 0 && SILO_THA_BONG < 5)
+			viTriThaBong = SILO_THA_BONG;
 	}
-
-	if (SILO_THA_BONG >= 0 && SILO_THA_BONG < 5)
-		viTriThaBong = SILO_THA_BONG;
-
 	Servo_Cam = 700;
 	RobotMode = 7;
 
-	viTriThaBong = Chay_Bo_Bong(viTriThaBong);
+	viTriThaBong = Chay_Bo_Bong(viTriThaBong, ChoChonSilo);
 	Tha_Bong_Vao_Silo(viTriThaBong);
 
 	robotStop(0);
@@ -277,22 +280,22 @@ void Ve_gap_bong_xanh(void)
 	viTriLazeVeLayBong = ViTriLazeThaBong[2];
 	Truc_X_Target = Truc_X_Max;
 
-	robotRunAngle(1800, 40, 0, 0.3);
+	robotRunAngle(1800, 50, 0, 0.3);
 
 	// lui lai
 	for (i = 0; i < 30; i++)
 	{
-		while (lazeSauValue < lazeApSatBoBong - 50)
+		while (lazeSauValue < 50)
 			vTaskDelay(1);
 		vTaskDelay(5);
 	}
 
-	//thu tay
+	// thu tay
 	XI_LANH_NANG_BONG_OFF;
 	Mam_Xoay_Target = Mam_Xoay_Gap_Bong;
 
 	// tim vi tri dung
-	while (absI(lazeTraiValue - viTriLazeVeLayBong) > 5)
+	while (absI(lazeTraiValue - viTriLazeVeLayBong) > 3)
 	{
 		// if (lazeSauValue < 200)
 		// {
@@ -303,25 +306,26 @@ void Ve_gap_bong_xanh(void)
 
 		if (viTriLazeVeLayBong > lazeTraiValue)
 		{
-			robotRunAngle(-1600 + absI((viTriLazeVeLayBong - lazeTraiValue) * 2.5), 40, 0, 0.3);
+			robotRunAngle(-1500 + absI((viTriLazeVeLayBong - lazeTraiValue) * 3), 50, 0, 0.3);
 		}
 		else if (viTriLazeVeLayBong < lazeTraiValue)
 		{
-			robotRunAngle(1600 - absI((viTriLazeVeLayBong - lazeTraiValue) * 2.5), 40, 0, 0.3);
+			robotRunAngle(1500 - absI((viTriLazeVeLayBong - lazeTraiValue) * 3), 50, 0, 0.3);
 		}
 	}
 
-	// while (ENCODER_TONG() < 5000 && !(CB_QUANG_TRAI || CB_QUANG_PHAI))
-	robotRunAngle(1800, 30, 0, 0.3);
+	robotRunAngle(1800, 50, 0, 0.3);
 
 	for (i = 0; i < 30; i++)
 	{
 		while (lazeSauValue < 450)
-			vTaskDelay(1);
+			;
+		vTaskDelay(1);
 		vTaskDelay(5);
 	}
 
 	RESET_ENCODER();
+	robotRunAngle(1800, 30, 0, 0.3);
 
 	while (ENCODER_TONG() < 1500)
 		vTaskDelay(1);

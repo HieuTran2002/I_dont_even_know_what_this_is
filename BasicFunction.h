@@ -3,9 +3,7 @@ int khoangCach = 1000;
 int viTriThaBong = 0;
 int lazeApSatBoBong = 150;
 int i;
-int previousCamAngle;
-bool isFindBallAgain;
-int TimViTri_Bo_Bong_Khac(int viTriThaBongHienTai);
+int TimViTri_Bo_Bong_Khac(int viTriThaBongHienTai,int ChoChonSilo);
 
 void USART_SendSTRING(void)
 {
@@ -294,17 +292,9 @@ void TimBongTuDo(int MauSan)
 	int rA = 0;
 	int tocdo = 0;
 	int lantimkiem = 1;
-	previousCamAngle = Servo_Cam;
-	isFindBallAgain = false;
 	ChuanBiCoCauLayBong();
 	// Tim lan thu nhat
 BatDauDoBong:
-	if(isFindBallAgain && previousCamAngle > 1600){
-		Servo_Cam = previousCamAngle;
-	}
-	else{
-		Servo_Cam = 1300;
-	}
 
 	lantimkiem = 0;
 	Mam_Xoay_Target = Mam_Xoay_Gap_Bong;
@@ -388,8 +378,6 @@ BatDauDoBong:
 		if (TAM_X == 0 && TAM_Y == 0)
 		{
 			robotStop(0);
-			previousCamAngle = Servo_Cam;
-			isFindBallAgain = true;
 			goto BatDauDoBong;
 		}
 	}
@@ -402,9 +390,9 @@ BatDauDoBong:
 			if (TAM_Y > 80 && Servo_Cam < 1700)
 			{
 				if (Servo_Cam < 1450)
-					Servo_Cam = Servo_Cam + 4;
+					Servo_Cam = Servo_Cam + 2;
 				else
-					Servo_Cam = Servo_Cam + 10;
+					Servo_Cam = Servo_Cam + 4;
 
 				if (Servo_Cam > 1650)
 					Servo_Cam = 1700;
@@ -428,8 +416,6 @@ BatDauDoBong:
 			if (TAM_X == 0 && TAM_Y == 0)
 			{
 				robotStop(0);
-				previousCamAngle = Servo_Cam;
-				isFindBallAgain = true;
 				goto BatDauDoBong;
 			}
 
@@ -456,8 +442,6 @@ BatDauDoBong:
 			if (TAM_X == 0 && TAM_Y == 0)
 			{
 				robotStop(0);
-				previousCamAngle = Servo_Cam;
-				isFindBallAgain = true;
 				goto BatDauDoBong;
 			}
 		}
@@ -476,8 +460,6 @@ BatDauDoBong:
 			if (TAM_X == 0 && TAM_Y == 0)
 			{
 				robotStop(0);
-				previousCamAngle = Servo_Cam;
-				isFindBallAgain = true;
 				goto BatDauDoBong;
 			}
 		}
@@ -680,7 +662,7 @@ void Tha_Bong_Vao_Silo(int viTriThaBong)
 
 //==================================================================
 
-int Chay_Bo_Bong(int viTriThaBong)
+int Chay_Bo_Bong(int viTriThaBong, int ChoChonSilo)
 {
 	int Lazer_Siolo = ViTriLazeThaBong[viTriThaBong];
 
@@ -711,7 +693,7 @@ int Chay_Bo_Bong(int viTriThaBong)
 	}
 
 	// kiem tra silo co bong chua
-	viTriThaBong = TimViTri_Bo_Bong_Khac(viTriThaBong);
+	viTriThaBong = TimViTri_Bo_Bong_Khac(viTriThaBong, ChoChonSilo);
 	if (viTriThaBong == 10)
 	{ // ko tim thay dc vi tri
 		RESET_ENCODER();
@@ -782,7 +764,7 @@ int KiemTra_CoBong()
 	return 0;
 }
 
-int TimViTri_Bo_Bong_Khac(int viTriThaBongHienTai)
+int TimViTri_Bo_Bong_Khac(int viTriThaBongHienTai, int ChoChonSilo)
 {
 	int viTriThaBongMoi = 2;
 
@@ -794,7 +776,7 @@ int TimViTri_Bo_Bong_Khac(int viTriThaBongHienTai)
 			return viTriThaBongHienTai;
 		//=======================================================
 		viTriThaBongMoi = viTriThaBongHienTai + 1;
-		while (viTriThaBongMoi < 5)
+		while (viTriThaBongMoi < (ChoChonSilo ? 5:4))
 		{
 			Mam_Xoay_Target = Mam_Xoay_Bo_Bong;
 			Di_Chuyen_Ngang_SiLo(viTriThaBongMoi, 0);
@@ -805,7 +787,7 @@ int TimViTri_Bo_Bong_Khac(int viTriThaBongHienTai)
 
 		// ================================================================
 		viTriThaBongMoi = viTriThaBongHienTai - 1;
-		while (viTriThaBongMoi >= 0)
+		while (viTriThaBongMoi >= (ChoChonSilo? 0: 1))
 		{
 			Mam_Xoay_Target = Mam_Xoay_Bo_Bong;
 			Di_Chuyen_Ngang_SiLo(viTriThaBongMoi, 0);
