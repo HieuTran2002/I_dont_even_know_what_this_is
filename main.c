@@ -130,10 +130,9 @@ static void taskMain(void *pvParameters)
 	RobotMode = 9;
 
 	/* preset */
-	TocDoToiDaCoKhi = 250;
-	Truc_Y_Target = Truc_Y_Max;
-	Truc_X_Target = Truc_X_Bo_Bong + 100;
-	Mam_Xoay_Target = Mam_Xoay_Bo_Bong;
+	// Truc_Y_Target = Truc_Y_Max;
+	// Truc_X_Target = Truc_X_Bo_Bong + 100;
+	// Mam_Xoay_Target = Mam_Xoay_Bo_Bong;
 	RL_DEN_CAM_OFF;
 	XI_LANH_KEP_THA_BONG_ON;
 
@@ -142,10 +141,10 @@ static void taskMain(void *pvParameters)
 	Servo_Cam = 1700;  // Servo_Cam = 1100;
 	//Servo_Bong = 1900; // 800: 0 do					1900:90 do
 	// chuan bi co cau khi xuat phat
-	// InitialPosition();
-	ChuanBiCoCauLayBong();
-
-	vTaskDelay(3000);
+	InitialPosition();
+	// ChuanBiCoCauLayBong();
+	vTaskDelay(6000);
+	TocDoToiDaCoKhi = 250;
 
 	// 1: san xanh; 2: san do
 	if (MauSan == 1)
@@ -172,7 +171,6 @@ static void taskMain(void *pvParameters)
 
 		if (NUT_1 == 0)
 		{
-
 			xuat_phat(MauSan);
 			chay_vung_3(MauSan);
 		}

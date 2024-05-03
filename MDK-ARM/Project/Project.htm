@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Project\Project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Project\Project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060020: Last Updated: Fri May 03 23:00:39 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060020: Last Updated: Sat May 04 01:33:31 2024
 <BR><P>
 <H3>Maximum Stack Usage =        480 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1309,10 +1309,9 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;XUAT_PHAT_SAN_DO_COPY
 <LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Ve_gap_bong_do
+<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;retry_sando
 <LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Ve_gap_bong_xanh
-<LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;XUAT_PHAT_SAN_XANH
 <LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimBongTuDo
-<LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskMain
 </UL>
 
 <P><STRONG><a name="[f8]"></a>testCam</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, main.o(.text), UNUSED)
@@ -1342,10 +1341,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimBongTuDo
 </UL>
 
-<P><STRONG><a name="[fc]"></a>TimBongTuDo</STRONG> (Thumb, 832 bytes, Stack size 48 bytes, main.o(.text))
+<P><STRONG><a name="[fc]"></a>TimBongTuDo</STRONG> (Thumb, 848 bytes, Stack size 48 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 336<LI>Call Chain = TimBongTuDo &rArr; robotRotateFree &rArr; robotRotate &rArr; calculateMotor &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
+<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_WriteBit
 <LI><a href="#[fb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;DO_BONG
 <LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChuanBiCoCauLayBong
 <LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GAP_BONG
@@ -1424,16 +1424,17 @@ Global Symbols
 <LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ThaBong_Xanh
 </UL>
 
-<P><STRONG><a name="[103]"></a>InitialPosition</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, main.o(.text), UNUSED)
+<P><STRONG><a name="[103]"></a>InitialPosition</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, main.o(.text))
 <BR><BR>[Calls]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_WriteBit
 </UL>
+<BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskMain
+</UL>
 
-<P><STRONG><a name="[104]"></a>XUAT_PHAT_SAN_XANH</STRONG> (Thumb, 436 bytes, Stack size 40 bytes, main.o(.text))
+<P><STRONG><a name="[104]"></a>XUAT_PHAT_SAN_XANH</STRONG> (Thumb, 432 bytes, Stack size 40 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 352<LI>Call Chain = XUAT_PHAT_SAN_XANH &rArr; Bam_thanh_laser_trai_lui &rArr; robotRunAngle &rArr; robotRotate &rArr; calculateMotor &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
 <LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_WriteBit
-<LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChuanBiCoCauLayBong
 <LI><a href="#[eb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Bam_thanh_laser_trai_lui
 <LI><a href="#[ea]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Bam_thanh_laser_trai
 <LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;robotRunAngle
@@ -1511,11 +1512,10 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xuat_phat
 </UL>
 
-<P><STRONG><a name="[10a]"></a>XUAT_PHAT_SAN_DO</STRONG> (Thumb, 480 bytes, Stack size 40 bytes, main.o(.text))
+<P><STRONG><a name="[10a]"></a>XUAT_PHAT_SAN_DO</STRONG> (Thumb, 470 bytes, Stack size 40 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 352<LI>Call Chain = XUAT_PHAT_SAN_DO &rArr; Bam_thanh_laser_phai_lui &rArr; robotRunAngle &rArr; robotRotate &rArr; calculateMotor &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
-<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_WriteBit
 <LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Bam_thanh_laser_phai_lui
 <LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;robotRunAngle
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;robotStop
@@ -1525,11 +1525,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;XUAT_PHAT_SAN_DO_2
 </UL>
 
-<P><STRONG><a name="[10b]"></a>retry_sando</STRONG> (Thumb, 350 bytes, Stack size 24 bytes, main.o(.text))
+<P><STRONG><a name="[10b]"></a>retry_sando</STRONG> (Thumb, 346 bytes, Stack size 24 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 336<LI>Call Chain = retry_sando &rArr; Bam_thanh_laser_phai_lui &rArr; robotRunAngle &rArr; robotRotate &rArr; calculateMotor &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
-<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_WriteBit
+<LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChuanBiCoCauLayBong
 <LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Bam_thanh_laser_phai_lui
 <LI><a href="#[e8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Bam_thanh_laser_phai
 <LI><a href="#[db]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;robotRunAngle
@@ -1548,7 +1548,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ThaBong_Do
 </UL>
 
-<P><STRONG><a name="[10d]"></a>ThaBong_Do</STRONG> (Thumb, 706 bytes, Stack size 56 bytes, main.o(.text))
+<P><STRONG><a name="[10d]"></a>ThaBong_Do</STRONG> (Thumb, 700 bytes, Stack size 56 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 456<LI>Call Chain = ThaBong_Do &rArr; Chay_Bo_Bong &rArr; TimViTri_Bo_Bong_Khac &rArr; Di_Chuyen_Ngang_SiLo &rArr; robotRunAngle &rArr; robotRotate &rArr; calculateMotor &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
@@ -1582,7 +1582,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Ve_gap_bong
 </UL>
 
-<P><STRONG><a name="[10f]"></a>XUAT_PHAT_SAN_DO_2</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, main.o(.text))
+<P><STRONG><a name="[10f]"></a>XUAT_PHAT_SAN_DO_2</STRONG> (Thumb, 40 bytes, Stack size 8 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 360<LI>Call Chain = XUAT_PHAT_SAN_DO_2 &rArr; XUAT_PHAT_SAN_DO &rArr; Bam_thanh_laser_phai_lui &rArr; robotRunAngle &rArr; robotRotate &rArr; calculateMotor &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
@@ -1958,8 +1958,6 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;XUAT_PHAT_SAN_DO_COPY
 <LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Ve_gap_bong_do
 <LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ThaBong_Do
-<LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;retry_sando
-<LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;XUAT_PHAT_SAN_DO
 <LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Ve_gap_bong_xanh
 <LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ThaBong_Xanh
 <LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;retry_sanxanh
@@ -1967,6 +1965,7 @@ Global Symbols
 <LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitialPosition
 <LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Chay_Bo_Bong
 <LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Tha_Bong_Vao_Silo
+<LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimBongTuDo
 <LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChuanBiCoCauLayBong
 <LI><a href="#[f6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GAP_BONG
 <LI><a href="#[f1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;test_cylinder
@@ -3843,7 +3842,7 @@ Local Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text)
 </UL>
-<P><STRONG><a name="[60]"></a>taskDieuKhienCoCau</STRONG> (Thumb, 30 bytes, Stack size 0 bytes, main.o(.text))
+<P><STRONG><a name="[60]"></a>taskDieuKhienCoCau</STRONG> (Thumb, 32 bytes, Stack size 0 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = taskDieuKhienCoCau &rArr; vTaskDelay &rArr; xTaskResumeAll &rArr; vTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
@@ -3870,7 +3869,7 @@ Local Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text)
 </UL>
-<P><STRONG><a name="[61]"></a>taskMain</STRONG> (Thumb, 414 bytes, Stack size 24 bytes, main.o(.text))
+<P><STRONG><a name="[61]"></a>taskMain</STRONG> (Thumb, 402 bytes, Stack size 24 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 480<LI>Call Chain = taskMain &rArr; chay_vung_3 &rArr; ThaBong &rArr; ThaBong_Do &rArr; Chay_Bo_Bong &rArr; TimViTri_Bo_Bong_Khac &rArr; Di_Chuyen_Ngang_SiLo &rArr; robotRunAngle &rArr; robotRotate &rArr; calculateMotor &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskGenericCreate
@@ -3881,8 +3880,8 @@ Local Symbols
 <LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ThaBong
 <LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;retry
 <LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xuat_phat
+<LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitialPosition
 <LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimBongTuDo
-<LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChuanBiCoCauLayBong
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;robotStop
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;run_read_gyro_uart1
 <LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RESET_ENCODER

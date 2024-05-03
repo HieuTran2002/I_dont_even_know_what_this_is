@@ -295,6 +295,7 @@ void TimBongTuDo(int MauSan)
 	ChuanBiCoCauLayBong();
 	// Tim lan thu nhat
 BatDauDoBong:
+	XI_LANH_KEP_THA_BONG_OFF;
 
 	lantimkiem = 0;
 	Mam_Xoay_Target = Mam_Xoay_Gap_Bong;
@@ -476,7 +477,7 @@ BatDauDoBong:
 	robotStop(0);
 	RobotMode = 10;
 	if (!GAP_BONG())
-	
+
 	{
 		robotStop(0);
 		goto BatDauDoBong;

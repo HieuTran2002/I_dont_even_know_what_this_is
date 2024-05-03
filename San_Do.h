@@ -1,14 +1,13 @@
 //////************************ san do *********************************
 void XUAT_PHAT_SAN_DO()
 {
+	TocDoToiDaCoKhi = 75;
 	RESET_ENCODER();
 
 	robotRunAngle(-900, 60, 0, 0.1);
 	while (ENCODER_TONG() < 2000)
 		vTaskDelay(1);
-	Mam_Xoay_Target = Mam_Xoay_Gap_Bong;
-	Truc_X_Target = Truc_X_Bo_Bong;
-	XI_LANH_KEP_THA_BONG_OFF;
+	
 	robotRunAngle(-800, 60, 0, 0.1);
 	while (ENCODER_TONG() < 4000)
 		vTaskDelay(1);
@@ -24,7 +23,7 @@ void XUAT_PHAT_SAN_DO()
 			vTaskDelay(1);
 
 	RESET_ENCODER();
-
+	Mam_Xoay_Target = Mam_Xoay_Gap_Bong;
 	robotRunAngle(0, 60, 0, 0.1);
 	while (ENCODER_TONG() < 2000)
 		vTaskDelay(1);
@@ -45,42 +44,41 @@ void XUAT_PHAT_SAN_DO()
 	RESET_ENCODER();
 
 	// chay ngan
-	robotRunAngle(-920, 60, 0, 0.1);
+	robotRunAngle(-920, 40, 0, 0.1);
 	while (ENCODER_TONG() < 1800)
 		vTaskDelay(1);
-
-	while (ENCODER_TONG() < 3500)
+	Truc_X_Target = Truc_X_Gap_Bong;
+	while (ENCODER_TONG() < 3200)
 		Bam_thanh_laser_phai_lui(40, 0, ViTriLazeThaBong[2], 5);
 
 	// chay xuong kho bong
 	RESET_ENCODER();
-
+	
 	robotRunAngle(1800, 15, 0, 0.1);
 	while (ENCODER_TONG() < 500)
 		vTaskDelay(1);
 
 	robotStop(0);
+	TocDoToiDaCoKhi = 250;
 }
 
 void retry_sando(void)
 {
-
+	TocDoToiDaCoKhi = 75;
 	for (i = 0; i < 50; i++)
 		while (ENCODER_TONG() < 1200)
 		{
-			Bam_thanh_laser_phai(40, 0, 10, 5);
-			vTaskDelay(1);
-		};
-
-	for (i = 0; i < 50; i++)
-		while (ENCODER_TONG() < 5000)
-		{
-			Bam_thanh_laser_phai(40, 0, 7, 5);
+			Bam_thanh_laser_phai(40, 0, 8, 5);
 			vTaskDelay(1);
 		};
 	Mam_Xoay_Target = Mam_Xoay_Gap_Bong;
-	Truc_X_Target = Truc_X_Bo_Bong;
-	XI_LANH_KEP_THA_BONG_OFF;
+	for (i = 0; i < 50; i++)
+		while (ENCODER_TONG() < 5000)
+		{
+			Bam_thanh_laser_phai(40, 0, 3, 5);
+			vTaskDelay(1);
+		};
+	
 
 	robotRunAngle(0, 45, 0, 0.1);
 	for (i = 0; i < 50; i++)
@@ -96,10 +94,11 @@ void retry_sando(void)
 	robotStop(0);
 	RESET_ENCODER();
 
-	robotRunAngle(-920, 60, 0, 0.1);
+	robotRunAngle(-920, 40, 0, 0.1);
 	while (ENCODER_TONG() < 2000)
 		vTaskDelay(1);
-
+	Truc_X_Target = Truc_X_Gap_Bong;
+	ChuanBiCoCauLayBong();
 	while (ENCODER_TONG() < 3500)
 		Bam_thanh_laser_phai_lui(40, 0, ViTriLazeThaBong[2], 5);
 	robotStop(0);
@@ -107,6 +106,7 @@ void retry_sando(void)
 	while (ENCODER_TONG() < 3900)
 		vTaskDelay(1);
 	vTaskDelay(1);
+	TocDoToiDaCoKhi = 250;
 }
 //---------------------------------------------------------------------------------------------
 void ChayLenNeThanh_Do(int tocdo)
@@ -325,7 +325,7 @@ void XUAT_PHAT_SAN_DO_2()
 {
 	XUAT_PHAT_SAN_DO();
 	robotRun(1800, 7);
-	while ((TAM_X == 0 || abs(TAM_Y - 18) > 10))
+	while ((TAM_X == 0 || TAM_Y == 0))
 		vTaskDelay(100);
 }
 

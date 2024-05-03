@@ -44,13 +44,13 @@ void XUAT_PHAT_SAN_XANH(void)
 
 	// len doc
 	RESET_ENCODER();
-	robotRunAngle(920, 50, 0, 0.1);
+	robotRunAngle(920, 40, 0, 0.1);
 	while (ENCODER_TONG() < 1800)
 		vTaskDelay(1);
 
-	ChuanBiCoCauLayBong();
+	
 
-	while (ENCODER_TONG() < 3500)
+	while (ENCODER_TONG() < 3200)
 		Bam_thanh_laser_trai_lui(40, 0, ViTriLazeThaBong[2], 5);
 
 	// robotRunAngle(900,15,0,0.1);
@@ -106,7 +106,7 @@ void retry_sanxanh(void)
 
 	// len doc
 	RESET_ENCODER();
-	robotRunAngle(920, 50, 0, 0.1);
+	robotRunAngle(920, 40, 0, 0.1);
 	while (ENCODER_TONG() < 1800)
 		vTaskDelay(1);
 
