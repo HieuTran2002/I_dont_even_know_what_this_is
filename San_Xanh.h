@@ -178,7 +178,7 @@ void ThaBong_Xanh(int ChoChonSilo)
 		}
 		vTaskDelay(5);
 	}
-
+	RL_DEN_CAM_ON;
 	Servo_Cam = 900;
 	robotStop(10);
 
@@ -267,6 +267,7 @@ void ThaBong_Xanh(int ChoChonSilo)
 	Tha_Bong_Vao_Silo(viTriThaBong);
 
 	robotStop(0);
+	RL_DEN_CAM_OFF;
 
 	// while(1);
 }

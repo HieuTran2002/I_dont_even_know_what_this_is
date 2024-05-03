@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Project\Project.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Project\Project.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060020: Last Updated: Thu May 02 22:53:24 2024
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060020: Last Updated: Fri May 03 23:00:39 2024
 <BR><P>
 <H3>Maximum Stack Usage =        480 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1293,8 +1293,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[60]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskDieuKhienCoCau
 </UL>
 
-<P><STRONG><a name="[f6]"></a>GAP_BONG</STRONG> (Thumb, 142 bytes, Stack size 24 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = GAP_BONG &rArr; vTaskDelay &rArr; xTaskResumeAll &rArr; vTaskIncrementTick
+<P><STRONG><a name="[f6]"></a>GAP_BONG</STRONG> (Thumb, 138 bytes, Stack size 16 bytes, main.o(.text))
+<BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = GAP_BONG &rArr; vTaskDelay &rArr; xTaskResumeAll &rArr; vTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
 <LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_WriteBit
@@ -1302,7 +1302,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimBongTuDo
 </UL>
 
-<P><STRONG><a name="[f7]"></a>ChuanBiCoCauLayBong</STRONG> (Thumb, 82 bytes, Stack size 8 bytes, main.o(.text))
+<P><STRONG><a name="[f7]"></a>ChuanBiCoCauLayBong</STRONG> (Thumb, 58 bytes, Stack size 8 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = ChuanBiCoCauLayBong
 </UL>
 <BR>[Calls]<UL><LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_WriteBit
@@ -1315,17 +1315,13 @@ Global Symbols
 <LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskMain
 </UL>
 
-<P><STRONG><a name="[f8]"></a>testCam</STRONG> (Thumb, 44 bytes, Stack size 0 bytes, main.o(.text), UNUSED)
+<P><STRONG><a name="[f8]"></a>testCam</STRONG> (Thumb, 72 bytes, Stack size 0 bytes, main.o(.text), UNUSED)
 <BR><BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
 </UL>
 
-<P><STRONG><a name="[f9]"></a>permanentStop</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 280<LI>Call Chain = permanentStop &rArr; robotStop &rArr; calculateMotor &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
-</UL>
-<BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
+<P><STRONG><a name="[f9]"></a>permanentStop</STRONG> (Thumb, 18 bytes, Stack size 0 bytes, main.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;robotStop
-</UL>
-<BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskMain
 </UL>
 
 <P><STRONG><a name="[fa]"></a>USART_SendSTRING</STRONG> (Thumb, 116 bytes, Stack size 16 bytes, main.o(.text))
@@ -1346,7 +1342,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimBongTuDo
 </UL>
 
-<P><STRONG><a name="[fc]"></a>TimBongTuDo</STRONG> (Thumb, 830 bytes, Stack size 48 bytes, main.o(.text))
+<P><STRONG><a name="[fc]"></a>TimBongTuDo</STRONG> (Thumb, 832 bytes, Stack size 48 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 336<LI>Call Chain = TimBongTuDo &rArr; robotRotateFree &rArr; robotRotate &rArr; calculateMotor &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
@@ -1364,7 +1360,7 @@ Global Symbols
 <LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskMain
 </UL>
 
-<P><STRONG><a name="[fd]"></a>Di_Chuyen_Ngang_SiLo</STRONG> (Thumb, 560 bytes, Stack size 40 bytes, main.o(.text))
+<P><STRONG><a name="[fd]"></a>Di_Chuyen_Ngang_SiLo</STRONG> (Thumb, 562 bytes, Stack size 40 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 344<LI>Call Chain = Di_Chuyen_Ngang_SiLo &rArr; robotRunAngle &rArr; robotRotate &rArr; calculateMotor &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
@@ -1471,10 +1467,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ThaBong_Xanh
 </UL>
 
-<P><STRONG><a name="[107]"></a>ThaBong_Xanh</STRONG> (Thumb, 650 bytes, Stack size 56 bytes, main.o(.text))
+<P><STRONG><a name="[107]"></a>ThaBong_Xanh</STRONG> (Thumb, 672 bytes, Stack size 56 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 456<LI>Call Chain = ThaBong_Xanh &rArr; Chay_Bo_Bong &rArr; TimViTri_Bo_Bong_Khac &rArr; Di_Chuyen_Ngang_SiLo &rArr; robotRunAngle &rArr; robotRotate &rArr; calculateMotor &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
+<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_WriteBit
 <LI><a href="#[106]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChayLenNeThanh_Xanh
 <LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Chay_Bo_Bong
 <LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Tha_Bong_Vao_Silo
@@ -1514,7 +1511,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xuat_phat
 </UL>
 
-<P><STRONG><a name="[10a]"></a>XUAT_PHAT_SAN_DO</STRONG> (Thumb, 478 bytes, Stack size 40 bytes, main.o(.text))
+<P><STRONG><a name="[10a]"></a>XUAT_PHAT_SAN_DO</STRONG> (Thumb, 480 bytes, Stack size 40 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 352<LI>Call Chain = XUAT_PHAT_SAN_DO &rArr; Bam_thanh_laser_phai_lui &rArr; robotRunAngle &rArr; robotRotate &rArr; calculateMotor &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
@@ -1551,10 +1548,11 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ThaBong_Do
 </UL>
 
-<P><STRONG><a name="[10d]"></a>ThaBong_Do</STRONG> (Thumb, 684 bytes, Stack size 56 bytes, main.o(.text))
+<P><STRONG><a name="[10d]"></a>ThaBong_Do</STRONG> (Thumb, 706 bytes, Stack size 56 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 456<LI>Call Chain = ThaBong_Do &rArr; Chay_Bo_Bong &rArr; TimViTri_Bo_Bong_Khac &rArr; Di_Chuyen_Ngang_SiLo &rArr; robotRunAngle &rArr; robotRotate &rArr; calculateMotor &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
+<LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_WriteBit
 <LI><a href="#[10c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChayLenNeThanh_Do
 <LI><a href="#[102]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Chay_Bo_Bong
 <LI><a href="#[fe]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Tha_Bong_Vao_Silo
@@ -1594,10 +1592,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xuat_phat
 </UL>
 
-<P><STRONG><a name="[110]"></a>XUAT_PHAT_SAN_DO_COPY</STRONG> (Thumb, 438 bytes, Stack size 40 bytes, main.o(.text))
-<BR><BR>[Stack]<UL><LI>Max Depth = 352<LI>Call Chain = XUAT_PHAT_SAN_DO_COPY &rArr; Bam_thanh_laser_phai_lui &rArr; robotRunAngle &rArr; robotRotate &rArr; calculateMotor &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
-</UL>
-<BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
+<P><STRONG><a name="[110]"></a>XUAT_PHAT_SAN_DO_COPY</STRONG> (Thumb, 442 bytes, Stack size 40 bytes, main.o(.text), UNUSED)
+<BR><BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
 <LI><a href="#[c1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;GPIO_WriteBit
 <LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChuanBiCoCauLayBong
 <LI><a href="#[e9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Bam_thanh_laser_phai_lui
@@ -1606,8 +1602,6 @@ Global Symbols
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;robotStop
 <LI><a href="#[ff]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;RESET_ENCODER
 <LI><a href="#[88]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ENCODER_TONG
-</UL>
-<BR>[Called By]<UL><LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskMain
 </UL>
 
 <P><STRONG><a name="[111]"></a>xuat_phat</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, main.o(.text))
@@ -1648,10 +1642,11 @@ Global Symbols
 <LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskMain
 </UL>
 
-<P><STRONG><a name="[115]"></a>chay_vung_3</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, main.o(.text))
+<P><STRONG><a name="[115]"></a>chay_vung_3</STRONG> (Thumb, 34 bytes, Stack size 0 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 456<LI>Call Chain = chay_vung_3 &rArr; ThaBong &rArr; ThaBong_Do &rArr; Chay_Bo_Bong &rArr; TimViTri_Bo_Bong_Khac &rArr; Di_Chuyen_Ngang_SiLo &rArr; robotRunAngle &rArr; robotRotate &rArr; calculateMotor &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
-<BR>[Calls]<UL><LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Ve_gap_bong
+<BR>[Calls]<UL><LI><a href="#[f2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vTaskDelay
+<LI><a href="#[114]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Ve_gap_bong
 <LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ThaBong
 <LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimBongTuDo
 </UL>
@@ -1962,9 +1957,11 @@ Global Symbols
 <P><STRONG><a name="[c1]"></a>GPIO_WriteBit</STRONG> (Thumb, 10 bytes, Stack size 0 bytes, stm32f4xx_gpio.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;XUAT_PHAT_SAN_DO_COPY
 <LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Ve_gap_bong_do
+<LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ThaBong_Do
 <LI><a href="#[10b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;retry_sando
 <LI><a href="#[10a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;XUAT_PHAT_SAN_DO
 <LI><a href="#[108]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Ve_gap_bong_xanh
+<LI><a href="#[107]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ThaBong_Xanh
 <LI><a href="#[105]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;retry_sanxanh
 <LI><a href="#[104]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;XUAT_PHAT_SAN_XANH
 <LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;InitialPosition
@@ -3257,7 +3254,8 @@ Global Symbols
 <LI><a href="#[139]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;vPortYieldFromISR
 <LI><a href="#[168]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uxListRemove
 </UL>
-<BR>[Called By]<UL><LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;XUAT_PHAT_SAN_DO_COPY
+<BR>[Called By]<UL><LI><a href="#[115]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;chay_vung_3
+<LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;XUAT_PHAT_SAN_DO_COPY
 <LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;XUAT_PHAT_SAN_DO_2
 <LI><a href="#[10e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Ve_gap_bong_do
 <LI><a href="#[10d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ThaBong_Do
@@ -3872,7 +3870,7 @@ Local Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> main.o(.text)
 </UL>
-<P><STRONG><a name="[61]"></a>taskMain</STRONG> (Thumb, 428 bytes, Stack size 24 bytes, main.o(.text))
+<P><STRONG><a name="[61]"></a>taskMain</STRONG> (Thumb, 414 bytes, Stack size 24 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 480<LI>Call Chain = taskMain &rArr; chay_vung_3 &rArr; ThaBong &rArr; ThaBong_Do &rArr; Chay_Bo_Bong &rArr; TimViTri_Bo_Bong_Khac &rArr; Di_Chuyen_Ngang_SiLo &rArr; robotRunAngle &rArr; robotRotate &rArr; calculateMotor &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dsub &rArr; __aeabi_dadd &rArr; _double_epilogue &rArr; _double_round
 </UL>
 <BR>[Calls]<UL><LI><a href="#[118]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xTaskGenericCreate
@@ -3883,9 +3881,7 @@ Local Symbols
 <LI><a href="#[113]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ThaBong
 <LI><a href="#[112]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;retry
 <LI><a href="#[111]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;xuat_phat
-<LI><a href="#[110]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;XUAT_PHAT_SAN_DO_COPY
 <LI><a href="#[fc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TimBongTuDo
-<LI><a href="#[f9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;permanentStop
 <LI><a href="#[f7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ChuanBiCoCauLayBong
 <LI><a href="#[d5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;robotStop
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;run_read_gyro_uart1

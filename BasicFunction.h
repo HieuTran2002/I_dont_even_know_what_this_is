@@ -36,7 +36,7 @@ int DO_BONG()
 
 	TocDoToiDaCoKhi = 200;
 	Servo_Cam = 1700;
-	Truc_Y_Target = 870;
+	Truc_Y_Target = Truc_Y_Max;
 	vTaskDelay(1000);
 
 	countOut = 0;
@@ -309,7 +309,7 @@ BatDauDoBong:
 	{
 		if (lantimkiem % 2 == 0)
 		{
-			Servo_Cam = 1150;
+			Servo_Cam = 1120;
 			RobotMode = 10;
 			vTaskDelay(1000);
 			RobotMode = 9;
@@ -409,7 +409,7 @@ BatDauDoBong:
 
 			/*-------------------------------*/
 			// tu chinh toc do
-			tocdo = 25 - absI((Servo_Cam - 1150) / 25);
+			tocdo = 22 - absI((Servo_Cam - 1120) / 25);
 			if (tocdo < 7)
 				tocdo = 7;
 

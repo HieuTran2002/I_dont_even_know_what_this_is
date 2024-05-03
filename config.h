@@ -96,6 +96,7 @@ vu8 DATA_SPEED[60] = {
 #define NUT_3 GPIO_ReadInputDataBit(GPIOE, GPIO_Pin_0)
 #define NUT_4 GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_7)
 #define NUT_5 GPIO_ReadInputDataBit(GPIOE, GPIO_Pin_8)
+
 #define NUT_6 GPIO_ReadInputDataBit(GPIOE, GPIO_Pin_14)
 
 //================================OUTPUT - XILANH ==================================//
@@ -104,6 +105,12 @@ vu8 DATA_SPEED[60] = {
 
 #define XI_LANH_KEP_THA_BONG_ON GPIO_WriteBit(GPIOB, GPIO_Pin_11, 1)
 #define XI_LANH_KEP_THA_BONG_OFF GPIO_WriteBit(GPIOB, GPIO_Pin_11, 0)
+
+#define RL_DEN_CAM_ON 	GPIO_WriteBit(GPIOB, GPIO_Pin_6, 0)
+#define RL_DEN_CAM_OFF 	GPIO_WriteBit(GPIOB, GPIO_Pin_6, 1)
+//================================OUTPUT - DEN ==================================//
+// #define DEN_PHA_ON GPIO_WriteBit(GPIOC, GPIO_Pin_0, 1)
+// #define DEN_PHA_OFF GPIO_WriteBit(GPIOC, GPIO_Pin_0, 0)
 
 //=============================ENCODER======================================
 #define Encoder_FR (vs32)((num_over_t1 << 16) | TIM_GetCounter(TIM1)) / 100
@@ -159,7 +166,7 @@ int Truc_Y_Tim_Bong_Thap = 800;
 int Truc_X_Max = 550;													//650;  
 int Truc_X_Min = 300; 	
 int Truc_X_Target = 570;
-int Truc_X_Bo_Bong = 420;
+int Truc_X_Bo_Bong = 450;
 int Truc_X_Gap_Bong = 450;
 int Truc_X_Bat_Dau = 530;
 

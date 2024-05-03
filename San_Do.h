@@ -167,6 +167,7 @@ void ThaBong_Do(int ChoChonSilo)
 	}
 
 	robotStop(0);
+	RL_DEN_CAM_ON;
 	Servo_Cam = 900;
 
 	viTriThaBong = 2;
@@ -226,7 +227,6 @@ void ThaBong_Do(int ChoChonSilo)
 	RobotMode = 8;
 	robotStop(0);
 	// kiem tra gia tri silo tu raspberry pi
-	//permanentStop();
 	if(ChoChonSilo){
 		while(SoFrameNhanSilo < 300)
 		{
@@ -261,6 +261,7 @@ void ThaBong_Do(int ChoChonSilo)
 
 	viTriThaBong = Chay_Bo_Bong(viTriThaBong, ChoChonSilo);
 	Tha_Bong_Vao_Silo(viTriThaBong);
+	RL_DEN_CAM_OFF;
 
 	robotStop(0);
 }

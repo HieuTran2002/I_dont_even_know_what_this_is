@@ -124,12 +124,6 @@ static void taskMain(void *pvParameters)
 	else
 		MauSan = 2; // Do
 
-	/*
-		Goc nhin tong quat: 800;
-		cam nhin xuong,1700
-		chay len san 3 870
-		nhin 3 silo: 900
-	*/
 
 	RobotMode = 10;
 	vTaskDelay(500);
@@ -138,12 +132,15 @@ static void taskMain(void *pvParameters)
 	/* preset */
 	TocDoToiDaCoKhi = 250;
 	Truc_Y_Target = Truc_Y_Max;
-	Truc_X_Target = Truc_X_Min;
-	Mam_Xoay_Target = Mam_Xoay_Gap_Bong;
+	Truc_X_Target = Truc_X_Bo_Bong + 100;
+	Mam_Xoay_Target = Mam_Xoay_Bo_Bong;
+	RL_DEN_CAM_OFF;
 	XI_LANH_KEP_THA_BONG_ON;
 
+	
+	
 	Servo_Cam = 1700;  // Servo_Cam = 1100;
-	Servo_Bong = 1900; // 800: 0 do					1900:90 do
+	//Servo_Bong = 1900; // 800: 0 do					1900:90 do
 	// chuan bi co cau khi xuat phat
 	// InitialPosition();
 	ChuanBiCoCauLayBong();
@@ -154,26 +151,28 @@ static void taskMain(void *pvParameters)
 	if (MauSan == 1)
 	{
 		// lay lazer silo san xanh
-		ViTriLazeThaBong[0] = 315;
-		ViTriLazeThaBong[1] = 244;
-		ViTriLazeThaBong[2] = 170;
-		ViTriLazeThaBong[3] = 93;
-		ViTriLazeThaBong[4] = 20;
+		ViTriLazeThaBong[0] = 327;
+		ViTriLazeThaBong[1] = 247;
+		ViTriLazeThaBong[2] = 173;
+		ViTriLazeThaBong[3] = 94;
+		ViTriLazeThaBong[4] = 18;
 	}
 	else
 	{
 		// lay lazer silo san do
 		ViTriLazeThaBong[0] = 12;
-		ViTriLazeThaBong[1] = 49;
-		ViTriLazeThaBong[2] = 87;
-		ViTriLazeThaBong[3] = 121;
-		ViTriLazeThaBong[4] = 163;
+		ViTriLazeThaBong[1] = 51;
+		ViTriLazeThaBong[2] = 89;
+		ViTriLazeThaBong[3] = 125;
+		ViTriLazeThaBong[4] = 167;
 	}
 
 	while (1)
 	{
+
 		if (NUT_1 == 0)
 		{
+
 			xuat_phat(MauSan);
 			chay_vung_3(MauSan);
 		}
@@ -190,24 +189,11 @@ static void taskMain(void *pvParameters)
 				TimBongTuDo(MauSan);
 				ThaBong(MauSan, 0);	
 				Ve_gap_bong(MauSan);
-				//permanentStop();
 				vTaskDelay(3000);
 			}
 		}
 
-		if (NUT_1 == 0)
-		{
-			XUAT_PHAT_SAN_DO_COPY();
-			permanentStop();
-			// XUAT_PHAT_SAN_XANH_2();
-			// while (1)
-			// {
-			// 	TimBongTuDo(MauSan);
-			// 	ThaBong(MauSan);
-			// 	Ve_gap_bong(MauSan);
-			// }
-			// permanentStop();
-		}
+		
 		robotStop(0);
 	}
 }

@@ -56,6 +56,7 @@ void chay_vung_3(int MauSan)
 		TimBongTuDo(MauSan);
 		ThaBong(MauSan, 0);
 		Ve_gap_bong(MauSan);
+		vTaskDelay(3000);
 	}
 	permanentStop();
 }

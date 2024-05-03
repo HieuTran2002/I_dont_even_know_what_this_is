@@ -477,7 +477,7 @@ int GAP_BONG(void)
 			XI_LANH_KEP_THA_BONG_ON;
 	}
 
-	vTaskDelay(1500);
+	vTaskDelay(3000);
 	Truc_Y_Target = Truc_Y_Max;
 	while (BienTroTrucYValue < Truc_Y_Max - 50)
 		vTaskDelay(1);
