@@ -476,6 +476,7 @@ BatDauDoBong:
 	robotStop(0);
 	RobotMode = 10;
 	if (!GAP_BONG())
+	
 	{
 		robotStop(0);
 		goto BatDauDoBong;
