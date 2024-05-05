@@ -44,7 +44,7 @@ static void taskDieuKhienCoCau(void *pvParameters)
 			Giu_Truc_X();
 		}
 		Giu_Truc_Y();
-		vTaskDelay(5);
+		vTaskDelay(3);
 	}
 }
 
@@ -133,28 +133,31 @@ static void taskMain(void *pvParameters)
 	// Truc_Y_Target = Truc_Y_Max;
 	// Truc_X_Target = Truc_X_Bo_Bong + 100;
 	// Mam_Xoay_Target = Mam_Xoay_Bo_Bong;
-	RL_DEN_CAM_OFF;
 	XI_LANH_KEP_THA_BONG_ON;
+	RL_DEN_CAM_OFF;
 
 	
 	
 	Servo_Cam = 1700;  // Servo_Cam = 1100;
 	//Servo_Bong = 1900; // 800: 0 do					1900:90 do
 	// chuan bi co cau khi xuat phat
-	InitialPosition();
+	// InitialPosition();
 	// ChuanBiCoCauLayBong();
+	trangThaiThaSilo();
+	permanentStop();
 	vTaskDelay(6000);
 	TocDoToiDaCoKhi = 250;
+	RL_DEN_CAM_ON;
 
 	// 1: san xanh; 2: san do
 	if (MauSan == 1)
 	{
 		// lay lazer silo san xanh
-		ViTriLazeThaBong[0] = 327;
-		ViTriLazeThaBong[1] = 247;
-		ViTriLazeThaBong[2] = 173;
-		ViTriLazeThaBong[3] = 94;
-		ViTriLazeThaBong[4] = 18;
+		ViTriLazeThaBong[0] = 343;
+		ViTriLazeThaBong[1] = 260;
+		ViTriLazeThaBong[2] = 180;
+		ViTriLazeThaBong[3] = 100;
+		ViTriLazeThaBong[4] = 17;
 	}
 	else
 	{
@@ -185,6 +188,7 @@ static void taskMain(void *pvParameters)
 			while (1)
 			{
 				TimBongTuDo(MauSan);
+				permanentStop();
 				ThaBong(MauSan, 0);	
 				Ve_gap_bong(MauSan);
 				vTaskDelay(3000);

@@ -55,7 +55,7 @@ void XUAT_PHAT_SAN_DO()
 	RESET_ENCODER();
 	
 	robotRunAngle(1800, 15, 0, 0.1);
-	while (ENCODER_TONG() < 500)
+	while (ENCODER_TONG() < 300)
 		vTaskDelay(1);
 
 	robotStop(0);
@@ -132,7 +132,7 @@ void ThaBong_Do(int ChoChonSilo)
 
 	RESET_ENCODER();
 
-	robotRunAngle(HuongLaBan, 60, HuongLaBan, 1.5);
+	robotRun(HuongLaBan, 50);
 	while (absI(robotAngle()) > 100)
 		vTaskDelay(1);
 

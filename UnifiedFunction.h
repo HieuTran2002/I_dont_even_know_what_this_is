@@ -2,11 +2,11 @@ void xuat_phat(int MauSan)
 {
 	if (MauSan == 1)
 	{
-		XUAT_PHAT_SAN_XANH_2();
+		XUAT_PHAT_SAN_XANH();
 	}
 	else
 	{
-		XUAT_PHAT_SAN_DO_2();
+		XUAT_PHAT_SAN_DO();
 	}
 
 }

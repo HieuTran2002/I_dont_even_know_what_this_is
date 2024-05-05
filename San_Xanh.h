@@ -1,6 +1,7 @@
 //////************************ san xanh *********************************
 void XUAT_PHAT_SAN_XANH(void)
 {
+	TocDoToiDaCoKhi = 75;
 	RESET_ENCODER();
 	robotRunAngle(900, 60, 0, 0.1);
 	while (ENCODER_TONG() < 2500)
@@ -16,6 +17,7 @@ void XUAT_PHAT_SAN_XANH(void)
 			vTaskDelay(1);
 
 	RESET_ENCODER();
+	Mam_Xoay_Target = Mam_Xoay_Gap_Bong;
 	for (i = 0; i < 50; i++)
 		while (ENCODER_TONG() < 1200)
 		{
@@ -26,7 +28,7 @@ void XUAT_PHAT_SAN_XANH(void)
 	for (i = 0; i < 50; i++)
 		while (ENCODER_TONG() < 3500)
 		{
-			Bam_thanh_laser_trai(50, 0, 17, 5);
+			Bam_thanh_laser_trai(40, 0, 17, 5);
 			vTaskDelay(1);
 		};
 
@@ -50,6 +52,7 @@ void XUAT_PHAT_SAN_XANH(void)
 
 	
 
+	Truc_X_Target = Truc_X_Gap_Bong;
 	while (ENCODER_TONG() < 3200)
 		Bam_thanh_laser_trai_lui(40, 0, ViTriLazeThaBong[2], 5);
 
@@ -62,7 +65,7 @@ void XUAT_PHAT_SAN_XANH(void)
 	// 	vTaskDelay(100);
 
 	//-----------------------------
-
+	TocDoToiDaCoKhi = 250;
 	robotStop(0);
 }
 
@@ -281,7 +284,7 @@ void Ve_gap_bong_xanh(void)
 	viTriLazeVeLayBong = ViTriLazeThaBong[2];
 	Truc_X_Target = Truc_X_Max;
 
-	robotRunAngle(1800, 50, 0, 0.3);
+	robotRun(1800, 50);
 
 	// lui lai
 	for (i = 0; i < 30; i++)

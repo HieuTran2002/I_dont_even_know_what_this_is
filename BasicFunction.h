@@ -3,7 +3,7 @@ int khoangCach = 1000;
 int viTriThaBong = 0;
 int lazeApSatBoBong = 150;
 int i;
-int TimViTri_Bo_Bong_Khac(int viTriThaBongHienTai,int ChoChonSilo);
+int TimViTri_Bo_Bong_Khac(int viTriThaBongHienTai, int ChoChonSilo);
 
 void USART_SendSTRING(void)
 {
@@ -17,9 +17,9 @@ void USART_SendSTRING(void)
 	USART_SendData(USART3, (uint16_t)Servo_Cam / 100);
 	vTaskDelay(10);
 	if (MauSan == 1)
-		USART_SendData(USART3, (uint16_t)lazeTraiValue / 10);
+		USART_SendData(USART3, (uint16_t)lazeTraiValue / 2);
 	else
-		USART_SendData(USART3, (uint16_t)lazePhaiValue / 10);
+		USART_SendData(USART3, (uint16_t)lazePhaiValue / 2);
 	vTaskDelay(10);
 }
 
@@ -476,8 +476,8 @@ BatDauDoBong:
 
 	robotStop(0);
 	RobotMode = 10;
-	if (!GAP_BONG())
 
+	if (!GAP_BONG())
 	{
 		robotStop(0);
 		goto BatDauDoBong;
@@ -617,9 +617,9 @@ void Tha_Bong_Vao_Silo(int viTriThaBong)
 
 	XI_LANH_KEP_THA_BONG_OFF;
 	RobotMode = viTriThaBong;
-	vTaskDelay(1500);
+	vTaskDelay(1000);
 	RobotMode = 5;
-	vTaskDelay(1500);
+	vTaskDelay(1000);
 	viTriThaBong = ViTriLazeThaBong[viTriThaBong];
 	//-------------------------------------------------------
 	if (MauSan == 1) //  xanh
@@ -658,7 +658,8 @@ void Tha_Bong_Vao_Silo(int viTriThaBong)
 			}
 		}
 	}
-
+	robotStop(0);
+	vTaskDelay(3000);
 	Truc_X_Target = Truc_X_Max;
 }
 
@@ -778,7 +779,7 @@ int TimViTri_Bo_Bong_Khac(int viTriThaBongHienTai, int ChoChonSilo)
 			return viTriThaBongHienTai;
 		//=======================================================
 		viTriThaBongMoi = viTriThaBongHienTai + 1;
-		while (viTriThaBongMoi < (ChoChonSilo ? 5:4))
+		while (viTriThaBongMoi < (ChoChonSilo ? 5 : 4))
 		{
 			Mam_Xoay_Target = Mam_Xoay_Bo_Bong;
 			Di_Chuyen_Ngang_SiLo(viTriThaBongMoi, 0);
@@ -789,7 +790,7 @@ int TimViTri_Bo_Bong_Khac(int viTriThaBongHienTai, int ChoChonSilo)
 
 		// ================================================================
 		viTriThaBongMoi = viTriThaBongHienTai - 1;
-		while (viTriThaBongMoi >= (ChoChonSilo? 0: 1))
+		while (viTriThaBongMoi >= (ChoChonSilo ? 0 : 1))
 		{
 			Mam_Xoay_Target = Mam_Xoay_Bo_Bong;
 			Di_Chuyen_Ngang_SiLo(viTriThaBongMoi, 0);
@@ -808,4 +809,12 @@ void InitialPosition()
 	Truc_X_Target = Truc_X_Bat_Dau;
 	Mam_Xoay_Target = Mam_Xoay_Bat_Dau;
 	XI_LANH_KEP_THA_BONG_ON;
+}
+void trangThaiThaSilo(){
+	Truc_X_Target = Truc_X_Bo_Bong;
+	Truc_Y_Target = Truc_Y_Max;
+	Mam_Xoay_Target = Mam_Xoay_Bo_Bong;
+	XI_LANH_KEP_THA_BONG_ON;
+	XI_LANH_NANG_BONG_ON;
+	Servo_Cam = 900;
 }

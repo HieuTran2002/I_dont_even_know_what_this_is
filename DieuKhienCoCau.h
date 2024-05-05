@@ -15,24 +15,34 @@ void Di_Chuyen_Truc_X(bool chieu, int speed);
 
 void Bam_thanh_laser_phai(int speed, int AngleHead, int lazer_stable_phai, int num_change_stable)
 {
-	int fix;
+	int fix = absI((lazePhaiValue - lazer_stable_phai) * 15);
 
-	fix = abs(lazePhaiValue - lazer_stable_phai) * 15;
+	if (fix > 600) fix = 600;
 
-	if (fix > 650)
-		fix = 650;
-
-	if (lazePhaiValue - lazer_stable_phai > num_change_stable)
-	{
-		robotRunAngle(0 - fix, speed, AngleHead, 0.1);
-	}
-	else if (lazePhaiValue - lazer_stable_phai < num_change_stable)
-	{
-		robotRunAngle(0 + fix, speed, AngleHead, 0.1);
-	}
-	else
+	if(fix < num_change_stable)
 		robotRunAngle(0, speed, AngleHead, 0.1);
+	else if (lazePhaiValue > lazer_stable_phai)
+		robotRunAngle(-fix, speed, AngleHead, 0.1);
+	else 
+		robotRunAngle(fix, speed, AngleHead, 0.1);
+
 }
+
+void Bam_thanh_laser_trai(int speed, int AngleHead, int lazer_stable_trai, int num_change_stable)
+{
+	int fix = absI((lazeTraiValue - lazer_stable_trai) * 15);
+
+	if (fix > 600) fix = 600;
+
+	if(fix < num_change_stable)
+		robotRunAngle(0, speed, AngleHead, 0.1);
+	else if (lazeTraiValue > lazer_stable_trai)
+		robotRunAngle(fix, speed, AngleHead, 0.1);
+	else 
+		robotRunAngle(-fix, speed, AngleHead, 0.1);
+
+}
+
 void Bam_thanh_laser_phai_lui(int speed, int AngleHead, int lazer_stable_phai, int num_change_stable)
 {
 	int fix;
@@ -45,7 +55,7 @@ void Bam_thanh_laser_phai_lui(int speed, int AngleHead, int lazer_stable_phai, i
 	{
 		robotRunAngle(-1800 + fix, speed, AngleHead, 0.1);
 	}
-	else if (lazePhaiValue - lazer_stable_phai < num_change_stable)
+	else if (lazePhaiValue - lazer_stable_phai < -num_change_stable)
 	{
 		robotRunAngle(1800 - fix, speed, AngleHead, 0.1);
 	}
@@ -53,26 +63,7 @@ void Bam_thanh_laser_phai_lui(int speed, int AngleHead, int lazer_stable_phai, i
 		robotRunAngle(1800, speed, AngleHead, 0.1);
 }
 
-void Bam_thanh_laser_trai(int speed, int AngleHead, int lazer_stable_trai, int num_change_stable)
-{
-	int fix;
 
-	fix = abs(lazeTraiValue - lazer_stable_trai) * 15;
-
-	if (fix > 500)
-		fix = 500;
-
-	if (lazeTraiValue - lazer_stable_trai > num_change_stable)
-	{
-		robotRunAngle(0 + fix, speed, AngleHead, 0.2);
-	}
-	else if (lazeTraiValue - lazer_stable_trai < num_change_stable)
-	{
-		robotRunAngle(0 - fix, speed, AngleHead, 0.2);
-	}
-	else
-		robotRunAngle(0, speed, AngleHead, 0.2);
-}
 
 void Bam_thanh_laser_trai_lui(int speed, int AngleHead, int lazer_stable_trai, int num_change_stable)
 {
@@ -87,7 +78,7 @@ void Bam_thanh_laser_trai_lui(int speed, int AngleHead, int lazer_stable_trai, i
 	{
 		robotRunAngle(1800 - fix, speed, AngleHead, 0.2);
 	}
-	else if (lazeTraiValue - lazer_stable_trai < num_change_stable)
+	else if (lazeTraiValue - lazer_stable_trai < -num_change_stable)
 	{
 		robotRunAngle(-1800 + fix, speed, AngleHead, 0.2);
 	}
@@ -179,13 +170,13 @@ void ADCValue_Control(void)
 	static unsigned int BientroTrucYCouter = 0, BientroTrucY_SUM = 0;
 	static unsigned int BientroMamXoayCouter = 0, BientroMamXoay_SUM = 0;
 	////------------------------
-	if (lazeTruocCouter++ < 200)
+	if (lazeTruocCouter++ < 100)
 	{
 		lazeTruoc_SUM += cam_bien_laze_truoc;
 	}
 	else
 	{
-		laze_nhan_banh_value = lazeTruoc_SUM / 200;
+		laze_nhan_banh_value = lazeTruoc_SUM / 100;
 		lazeTruocCouter = 0;
 		lazeTruoc_SUM = 0;
 	}
@@ -202,7 +193,7 @@ void ADCValue_Control(void)
 	}
 	//
 
-	if (lazePhaiCouter++ < 50)
+	if (lazePhaiCouter++ < 100)
 	{
 		lazePhai_SUM += cam_bien_laze_phai;
 	}
@@ -265,7 +256,7 @@ void bam_Thanh_Lazer_Trai_0do(int speed, int angle_fix, int AngleHead, int lazer
 	{
 		robotRunAngle(0 + angle_fix, speed, AngleHead, 0.3);
 	}
-	else if (lazeTraiValue - lazer_stable_truoc < num_change_stable)
+	else if (lazeTraiValue - lazer_stable_truoc < -num_change_stable)
 	{
 		robotRunAngle(0 - angle_fix, speed, AngleHead, 0.3);
 	}
@@ -279,7 +270,7 @@ void bam_Thanh_Lazer_Trai_SAN_XANH(int speed, int angle_fix, int AngleHead, int 
 	{
 		robotRunAngle(600 - angle_fix, speed, AngleHead, 0.1);
 	}
-	else if (lazeTraiValue - lazer_stable_truoc < num_change_stable)
+	else if (lazeTraiValue - lazer_stable_truoc < -num_change_stable)
 	{
 		robotRunAngle(600 + angle_fix, speed, AngleHead, 0.1);
 	}
@@ -287,33 +278,33 @@ void bam_Thanh_Lazer_Trai_SAN_XANH(int speed, int angle_fix, int AngleHead, int 
 		robotRunAngle(600, speed, AngleHead, 0.1);
 }
 
-void bam_Thanh_Lazer_Trai(int speed, int angle_fix, int AngleHead, int lazer_stable_truoc, int num_change_stable)
-{
-	if (lazeTraiValue - lazer_stable_truoc > num_change_stable)
-	{
-		robotRunAngle(0 + angle_fix, speed, AngleHead, 0.1);
-	}
-	else if (lazeTraiValue - lazer_stable_truoc < num_change_stable)
-	{
-		robotRunAngle(0 - angle_fix, speed, AngleHead, 0.1);
-	}
-	else
-		robotRunAngle(0, speed, AngleHead, 0.1);
-}
+// void bam_Thanh_Lazer_Trai(int speed, int angle_fix, int AngleHead, int lazer_stable_truoc, int num_change_stable)
+// {
+// 	if (lazeTraiValue - lazer_stable_truoc > num_change_stable)
+// 	{
+// 		robotRunAngle(0 + angle_fix, speed, AngleHead, 0.1);
+// 	}
+// 	else if (lazeTraiValue - lazer_stable_truoc < -num_change_stable)
+// 	{
+// 		robotRunAngle(0 - angle_fix, speed, AngleHead, 0.1);
+// 	}
+// 	else
+// 		robotRunAngle(0, speed, AngleHead, 0.1);
+// }
 
-void bam_Thanh_Lazer_Phai(int speed, int angle_fix, int AngleHead, int lazer_stable_truoc, int num_change_stable)
-{
-	if (lazePhaiValue - lazer_stable_truoc > num_change_stable)
-	{
-		robotRunAngle(0 + angle_fix, speed, AngleHead, 0.1);
-	}
-	else if (lazePhaiValue - lazer_stable_truoc < num_change_stable)
-	{
-		robotRunAngle(0 - angle_fix, speed, AngleHead, 0.1);
-	}
-	else
-		robotRunAngle(0, speed, AngleHead, 0.1);
-}
+// void bam_Thanh_Lazer_Phai(int speed, int angle_fix, int AngleHead, int lazer_stable_truoc, int num_change_stable)
+// {
+// 	if (lazePhaiValue - lazer_stable_truoc > num_change_stable)
+// 	{
+// 		robotRunAngle(0 + angle_fix, speed, AngleHead, 0.1);
+// 	}
+// 	else if (lazePhaiValue - lazer_stable_truoc < -num_change_stable)
+// 	{
+// 		robotRunAngle(0 - angle_fix, speed, AngleHead, 0.1);
+// 	}
+// 	else
+// 		robotRunAngle(0, speed, AngleHead, 0.1);
+// }
 
 void test_cylinder(void)
 {
@@ -476,7 +467,7 @@ int GAP_BONG(void)
 		if (BienTroTrucYValue < Truc_Y_Min + 75)
 			XI_LANH_KEP_THA_BONG_ON;
 	}
-	vTaskDelay(3000);
+	vTaskDelay(5000);
 	Truc_Y_Target = Truc_Y_Max;
 	while (BienTroTrucYValue < Truc_Y_Max - 50)
 		vTaskDelay(1);
