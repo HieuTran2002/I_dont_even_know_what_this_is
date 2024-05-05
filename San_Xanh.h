@@ -11,19 +11,16 @@ void XUAT_PHAT_SAN_XANH(void)
 	while (ENCODER_TONG() < 4000)
 		vTaskDelay(1);
 
-	robotRunAngle(700, 40, 0, 0.1);
+
+	robotRunAngle(700, 50, 0, 0.1);
+
+	// bam thanh
 	for (i = 0; i < 50; i++)
-		while (lazeTraiValue > 100)
+		while (lazeTraiValue > 140)
 			vTaskDelay(1);
 
 	RESET_ENCODER();
-	Mam_Xoay_Target = Mam_Xoay_Gap_Bong;
-	for (i = 0; i < 50; i++)
-		while (ENCODER_TONG() < 1200)
-		{
-			Bam_thanh_laser_trai(40, 0, 22, 5);
-			vTaskDelay(1);
-		};
+	ChuanBiCoCauLayBong();
 
 	for (i = 0; i < 50; i++)
 		while (ENCODER_TONG() < 3500)
@@ -34,15 +31,16 @@ void XUAT_PHAT_SAN_XANH(void)
 
 	robotRunAngle(0, 45, 0, 0.1);
 	for (i = 0; i < 50; i++)
-		while (lazeTraiValue < 35)
+		while (lazeTraiValue < 50)
 			vTaskDelay(1);
 
 	RESET_ENCODER();
 
-	robotRunAngle(0, 30, 0, 0.1);
+	robotRunAngle(0, 45, 0, 0.1);
 	while (ENCODER_TONG() < 600)
 		vTaskDelay(1);
 	robotStop(0);
+	permanentStop();
 
 	// len doc
 	RESET_ENCODER();
@@ -51,8 +49,6 @@ void XUAT_PHAT_SAN_XANH(void)
 		vTaskDelay(1);
 
 	
-
-	Truc_X_Target = Truc_X_Gap_Bong;
 	while (ENCODER_TONG() < 3200)
 		Bam_thanh_laser_trai_lui(40, 0, ViTriLazeThaBong[2], 5);
 
@@ -136,7 +132,7 @@ void ChayLenNeThanh_Xanh(int tocdo)
 		robotRunAngle(0, tocdo, 0, 1.5);
 }
 //---------------------------------------------------------------------------------------------
-void ThaBong_Xanh(int ChoChonSilo)
+void ThaBong_Xanh()
 {
 	int KhoangCach = 999;
 	int SoFrameNhanSilo = 0;
@@ -174,7 +170,7 @@ void ThaBong_Xanh(int ChoChonSilo)
 
 	for (i = 0; i < 30; i++)
 	{
-		while (lazePhaiValue < 250)
+		while (lazePhaiValue < 330)
 		{
 			ChayLenNeThanh_Xanh(35);
 			vTaskDelay(1);
@@ -182,7 +178,7 @@ void ThaBong_Xanh(int ChoChonSilo)
 		vTaskDelay(5);
 	}
 	RL_DEN_CAM_ON;
-	Servo_Cam = 900;
+	Servo_Cam = 930;
 	robotStop(10);
 
 	viTriThaBong = 2;
@@ -235,38 +231,37 @@ void ThaBong_Xanh(int ChoChonSilo)
 
 	RobotMode = 8;
 	robotStop(0);
+	permanentStop();
 	// kiem tra gia tri silo tu raspberry pi
-	if (ChoChonSilo)
-	{
 
-		while (SoFrameNhanSilo < 300)
+	while (SoFrameNhanSilo < 300)
+	{
+		if (SiloDaChon == SILO_THA_BONG)
+			SoFrameNhanSilo += 1;
+		else
 		{
-			if (SiloDaChon == SILO_THA_BONG)
-				SoFrameNhanSilo += 1;
-			else
-			{
-				SoFrameNhanSilo = 0;
-				SiloDaChon = SILO_THA_BONG;
-			}
+			SoFrameNhanSilo = 0;
+			SiloDaChon = SILO_THA_BONG;
+		}
+		vTaskDelay(10);
+	}
+	robotRunAngle(0, 15, 0, 0.9);
+	while (lazeSauValue > lazeApSatBoBong)
+	{
+		while (SILO_THA_BONG > 4 && lazeSauValue > lazeApSatBoBong)
+		{
 			vTaskDelay(10);
 		}
-		robotRunAngle(0, 15, 0, 0.9);
-		while (lazeSauValue > lazeApSatBoBong)
-		{
-			while (SILO_THA_BONG > 4 && lazeSauValue > lazeApSatBoBong)
-			{
-				vTaskDelay(10);
-			}
-			vTaskDelay(1);
-		}
-
-		if (SILO_THA_BONG >= 0 && SILO_THA_BONG < 5)
-			viTriThaBong = SILO_THA_BONG;
+		vTaskDelay(1);
 	}
+
+	if (SILO_THA_BONG >= 0 && SILO_THA_BONG < 5)
+		viTriThaBong = SILO_THA_BONG;
+	
 	Servo_Cam = 700;
 	RobotMode = 7;
 
-	viTriThaBong = Chay_Bo_Bong(viTriThaBong, ChoChonSilo);
+	viTriThaBong = Chay_Bo_Bong(viTriThaBong);
 	Tha_Bong_Vao_Silo(viTriThaBong);
 
 	robotStop(0);
@@ -289,7 +284,7 @@ void Ve_gap_bong_xanh(void)
 	// lui lai
 	for (i = 0; i < 30; i++)
 	{
-		while (lazeSauValue < 50)
+		while (lazeSauValue < 60)
 			vTaskDelay(1);
 		vTaskDelay(5);
 	}

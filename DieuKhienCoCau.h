@@ -48,8 +48,8 @@ void Bam_thanh_laser_phai_lui(int speed, int AngleHead, int lazer_stable_phai, i
 	int fix;
 	fix = abs(lazePhaiValue - lazer_stable_phai) * 15;
 
-	if (fix > 500)
-		fix = 500;
+	if (fix > 450)
+		fix = 450;
 
 	if (lazePhaiValue - lazer_stable_phai > num_change_stable)
 	{
@@ -71,8 +71,8 @@ void Bam_thanh_laser_trai_lui(int speed, int AngleHead, int lazer_stable_trai, i
 
 	fix = abs(lazeTraiValue - lazer_stable_trai) * 15;
 
-	if (fix > 500)
-		fix = 500;
+	if (fix > 450)
+		fix = 450;
 
 	if (lazeTraiValue - lazer_stable_trai > num_change_stable)
 	{
@@ -467,7 +467,7 @@ int GAP_BONG(void)
 		if (BienTroTrucYValue < Truc_Y_Min + 75)
 			XI_LANH_KEP_THA_BONG_ON;
 	}
-	vTaskDelay(5000);
+	vTaskDelay(2000);
 	Truc_Y_Target = Truc_Y_Max;
 	while (BienTroTrucYValue < Truc_Y_Max - 50)
 		vTaskDelay(1);
@@ -493,7 +493,7 @@ void ChuanBiCoCauLayBong(void)
 	Truc_Y_Target = Truc_Y_Max - 10;
 	Truc_X_Target = Truc_X_Gap_Bong;
 	Mam_Xoay_Target = Mam_Xoay_Gap_Bong;
-	Servo_Cam = Servo_Cam_Tim_Bong; // Servo_Cam = 1100;
+	Servo_Cam_Target = Servo_Cam_Tim_Bong; // Servo_Cam = 1100;
 	Servo_Bong = 1900;				// 800: 0 do					1900:90 do
 	XI_LANH_KEP_THA_BONG_OFF;
 	XI_LANH_NANG_BONG_OFF;
@@ -518,4 +518,13 @@ void permanentStop()
 	robotStop(0);
 	while (1)
 		vTaskDelay(1000);
+}
+
+void DK_Rcservo(void)
+{
+	if(Servo_Cam != Servo_Cam_Target){
+	if(Servo_Cam > Servo_Cam_Target) Servo_Cam -= 1;
+	else Servo_Cam += 1;
+	}
+	vTaskDelay(Delay_RC);	
 }

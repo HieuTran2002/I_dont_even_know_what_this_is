@@ -30,7 +30,9 @@ static void taskGyro(void *pvParameters)
 	{
 		//---- gui tin hieu de lay gia tri la ban -----------
 		HMI_RUN_LOOP(17);
-		vTaskDelay(15);
+		DK_Rcservo();
+		vTaskDelay(10);
+	
 	}
 }
 static void taskDieuKhienCoCau(void *pvParameters)
@@ -138,16 +140,28 @@ static void taskMain(void *pvParameters)
 
 	
 	
-	Servo_Cam = 1700;  // Servo_Cam = 1100;
 	//Servo_Bong = 1900; // 800: 0 do					1900:90 do
+	TocDoToiDaCoKhi = 100;
 	// chuan bi co cau khi xuat phat
 	// InitialPosition();
-	// ChuanBiCoCauLayBong();
-	trangThaiThaSilo();
-	permanentStop();
+	ChuanBiCoCauLayBong();
+	// trangThaiThaSilo();
+	Servo_Cam_Target = 1700;  // Servo_Cam = 1100;
 	vTaskDelay(6000);
+	while(1)
+	{
+		while(Servo_Cam >= 1100)
+		{
+			Servo_Cam -= 5;
+			vTaskDelay(25);
+
+		}
+		vTaskDelay(30000);
+		Servo_Cam = 1700;  // Servo_Cam = 1100;
+		vTaskDelay(30000);
+	}
+	permanentStop();
 	TocDoToiDaCoKhi = 250;
-	RL_DEN_CAM_ON;
 
 	// 1: san xanh; 2: san do
 	if (MauSan == 1)
@@ -162,11 +176,11 @@ static void taskMain(void *pvParameters)
 	else
 	{
 		// lay lazer silo san do
-		ViTriLazeThaBong[0] = 12;
-		ViTriLazeThaBong[1] = 51;
-		ViTriLazeThaBong[2] = 89;
-		ViTriLazeThaBong[3] = 125;
-		ViTriLazeThaBong[4] = 167;
+		ViTriLazeThaBong[0] = 22;
+		ViTriLazeThaBong[1] = 100;
+		ViTriLazeThaBong[2] = 174;
+		ViTriLazeThaBong[3] = 251;
+		ViTriLazeThaBong[4] = 327;
 	}
 
 	while (1)
@@ -188,8 +202,7 @@ static void taskMain(void *pvParameters)
 			while (1)
 			{
 				TimBongTuDo(MauSan);
-				permanentStop();
-				ThaBong(MauSan, 0);	
+				ThaBong(MauSan);	
 				Ve_gap_bong(MauSan);
 				vTaskDelay(3000);
 			}

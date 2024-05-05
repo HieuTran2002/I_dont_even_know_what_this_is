@@ -175,6 +175,9 @@ int Servo_Cam_Silo = 900;  // 900
 int Servo_Cam_Tim_Bong = 1700; // 1700
 int Servo_Cam_Ngang = 700;  // 700
 
+int Servo_Cam_Target = 1700;
+int	Delay_RC = 1;
+
 //-----------------------khai bao bien toan cuc
 uint16_t MauSan = 0;	 // 1: san xanh; 2: san do
 uint16_t RobotMode = 10; // 10- reset tim bong ; 9- tim bong; > 9 tim silo

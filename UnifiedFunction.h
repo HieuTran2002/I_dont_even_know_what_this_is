@@ -6,7 +6,7 @@ void xuat_phat(int MauSan)
 	}
 	else
 	{
-		XUAT_PHAT_SAN_DO();
+		XUAT_PHAT_SAN_DO_COPY();
 	}
 
 }
@@ -24,15 +24,15 @@ void retry(int MauSan)
 }
 
 
-void ThaBong(int mausan, int ChoChonSilo)
+void ThaBong(int mausan)
 {
 	if (mausan == 1)
 	{
-		ThaBong_Xanh(ChoChonSilo);
+		ThaBong_Xanh();
 	}
 	else
 	{
-		ThaBong_Do(ChoChonSilo);
+		ThaBong_Do();
 	}
 }
 
@@ -54,7 +54,7 @@ void chay_vung_3(int MauSan)
 	while(1)
 	{
 		TimBongTuDo(MauSan);
-		ThaBong(MauSan, 0);
+		ThaBong(MauSan);
 		Ve_gap_bong(MauSan);
 		vTaskDelay(3000);
 	}

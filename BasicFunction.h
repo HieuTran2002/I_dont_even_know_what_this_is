@@ -3,7 +3,7 @@ int khoangCach = 1000;
 int viTriThaBong = 0;
 int lazeApSatBoBong = 150;
 int i;
-int TimViTri_Bo_Bong_Khac(int viTriThaBongHienTai, int ChoChonSilo);
+int TimViTri_Bo_Bong_Khac(int viTriThaBongHienTai);
 
 void USART_SendSTRING(void)
 {
@@ -310,7 +310,7 @@ BatDauDoBong:
 	{
 		if (lantimkiem % 2 == 0)
 		{
-			Servo_Cam = 1120;
+			Servo_Cam_Target = 1120;
 			RobotMode = 10;
 			vTaskDelay(1000);
 			RobotMode = 9;
@@ -318,7 +318,7 @@ BatDauDoBong:
 		}
 		else
 		{
-			Servo_Cam = 1700;
+			Servo_Cam_Target = 1700;
 			RobotMode = 10;
 			vTaskDelay(1000);
 			RobotMode = 9;
@@ -354,7 +354,7 @@ BatDauDoBong:
 		robotStop(0);
 		if (TAM_X == 0 && TAM_Y == 0)
 		{
-			Servo_Cam = 1500;
+			Servo_Cam_Target = 1500;
 			robotRotate(rA, 0.5, 0);
 			while (robotFixAngle())
 			{
@@ -558,7 +558,7 @@ void Di_Chuyen_Ngang_SiLo(int viTriSilo, int BoBong)
 					}
 					else
 					{
-						tocDo = absI(lazePhaiValue - viTriLazeThaBong) * 2;
+						tocDo = absI(lazePhaiValue - viTriLazeThaBong);
 						if (tocDo > 30)
 							tocDo = 30;
 
@@ -578,7 +578,7 @@ void Di_Chuyen_Ngang_SiLo(int viTriSilo, int BoBong)
 					else
 					{
 
-						tocDo = absI(lazePhaiValue - viTriLazeThaBong) * 2;
+						tocDo = absI(lazePhaiValue - viTriLazeThaBong);
 						if (tocDo > 30)
 							tocDo = 30;
 
@@ -665,7 +665,7 @@ void Tha_Bong_Vao_Silo(int viTriThaBong)
 
 //==================================================================
 
-int Chay_Bo_Bong(int viTriThaBong, int ChoChonSilo)
+int Chay_Bo_Bong(int viTriThaBong)
 {
 	int Lazer_Siolo = ViTriLazeThaBong[viTriThaBong];
 
@@ -676,7 +676,7 @@ int Chay_Bo_Bong(int viTriThaBong, int ChoChonSilo)
 		{ // 1: san xanh; 2: san do
 			while (lazeSauValue > lazeApSatBoBong)
 			{
-				if (lazeSauValue > lazeApSatBoBong + 30)
+				if (lazeSauValue > lazeApSatBoBong + 50)
 					Bam_thanh_laser_trai(30, 0, Lazer_Siolo, 2);
 				else
 					Bam_thanh_laser_trai(15, 0, Lazer_Siolo, 2);
@@ -686,7 +686,7 @@ int Chay_Bo_Bong(int viTriThaBong, int ChoChonSilo)
 		{
 			while (lazeSauValue > lazeApSatBoBong)
 			{
-				if (lazeSauValue > lazeApSatBoBong + 30)
+				if (lazeSauValue > lazeApSatBoBong + 50)
 					Bam_thanh_laser_phai(30, 0, Lazer_Siolo, 2);
 				else
 					Bam_thanh_laser_phai(15, 0, Lazer_Siolo, 2);
@@ -696,7 +696,7 @@ int Chay_Bo_Bong(int viTriThaBong, int ChoChonSilo)
 	}
 
 	// kiem tra silo co bong chua
-	viTriThaBong = TimViTri_Bo_Bong_Khac(viTriThaBong, ChoChonSilo);
+	viTriThaBong = TimViTri_Bo_Bong_Khac(viTriThaBong);
 	if (viTriThaBong == 10)
 	{ // ko tim thay dc vi tri
 		RESET_ENCODER();
@@ -767,7 +767,7 @@ int KiemTra_CoBong()
 	return 0;
 }
 
-int TimViTri_Bo_Bong_Khac(int viTriThaBongHienTai, int ChoChonSilo)
+int TimViTri_Bo_Bong_Khac(int viTriThaBongHienTai)
 {
 	int viTriThaBongMoi = 2;
 
@@ -779,7 +779,7 @@ int TimViTri_Bo_Bong_Khac(int viTriThaBongHienTai, int ChoChonSilo)
 			return viTriThaBongHienTai;
 		//=======================================================
 		viTriThaBongMoi = viTriThaBongHienTai + 1;
-		while (viTriThaBongMoi < (ChoChonSilo ? 5 : 4))
+		while (viTriThaBongMoi < 5)
 		{
 			Mam_Xoay_Target = Mam_Xoay_Bo_Bong;
 			Di_Chuyen_Ngang_SiLo(viTriThaBongMoi, 0);
@@ -790,7 +790,7 @@ int TimViTri_Bo_Bong_Khac(int viTriThaBongHienTai, int ChoChonSilo)
 
 		// ================================================================
 		viTriThaBongMoi = viTriThaBongHienTai - 1;
-		while (viTriThaBongMoi >= (ChoChonSilo ? 0 : 1))
+		while (viTriThaBongMoi >= 0)
 		{
 			Mam_Xoay_Target = Mam_Xoay_Bo_Bong;
 			Di_Chuyen_Ngang_SiLo(viTriThaBongMoi, 0);
@@ -815,6 +815,6 @@ void trangThaiThaSilo(){
 	Truc_Y_Target = Truc_Y_Max;
 	Mam_Xoay_Target = Mam_Xoay_Bo_Bong;
 	XI_LANH_KEP_THA_BONG_ON;
-	XI_LANH_NANG_BONG_ON;
+	// XI_LANH_NANG_BONG_ON;
 	Servo_Cam = 900;
 }
